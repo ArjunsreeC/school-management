@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="register-container">
+    <h2 style="text-align: center; color: #333;">Register</h2>
+    <form method="post" id="register-form" onsubmit="return validateRegistrationForm()" style="max-width: 300px; margin: 0 auto;">
+      {% csrf_token %}
+      
+      <div style="margin-bottom: 15px;">
+        {{ form.email.label_tag }}
+        {{ form.email }}
+      </div>
+      
+      <div style="margin-bottom: 15px;">
+        {{ form.name.label_tag }}
+        {{ form.name }}
+      </div>
+      
+      <div style="margin-bottom: 15px;">
+        {{ form.role.label_tag }}
+        {{ form.role }}
+      </div>
+      
+      <div style="margin-bottom: 15px;">
+        {{ form.country.label_tag }}
+        {{ form.country }}
+      </div>
+      
+      <div style="margin-bottom: 15px;">
+        {{ form.nationality.label_tag }}
+        {{ form.nationality }}
+      </div>
+      
+      <div style="margin-bottom: 15px;">
+        {{ form.mobile.label_tag }}
+        {{ form.mobile }}
+      </div>
+      
+      <div style="margin-bottom: 15px;">
+        {{ form.password.label_tag }}
+        {{ form.password }}
+      </div>
+      
+      <button type="submit" style="background-color: #28a745; color: #fff; padding: 10px; border: none; cursor: pointer; width: 100%;">Sign up</button>
+    </form>
+  </div>
+
+  <script>
+    function validateRegistrationForm() {
+      // Your validation logic here, if needed
+      return true;
+    }
+  </script>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="home-content">
+        <h2>Welcome to the Home Page</h2>
+        
+        {% if user.is_authenticated %}
+            <p class="welcome-message">Welcome, {{ user.username }}!</p>
+        {% else %}
+            <p class="login-message">Please log in to access this content.</p>
+        {% endif %}
+    </div>
+{% endblock %}
+
+<style>
+    .home-content {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        color: #333;
+    }
+
+    .welcome-message {
+        color: #007bff;
+    }
+
+    .login-message {
+        color: #dc3545;
+    }
+</style>
+

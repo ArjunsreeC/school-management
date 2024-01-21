@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="login-container">
+    <h2 style="text-align: center; color: #333;">Login</h2>
+    <form method="post" action="{% url 'login' %}" id="login-form" style="max-width: 300px; margin: 0 auto;">
+      {% csrf_token %}
+      <div style="margin-bottom: 15px;">
+        {{ form.username.label_tag }}
+        {{ form.username }}
+        <span id="username-error" style="color: red;"></span>
+      </div>
+      <div style="margin-bottom: 15px;">
+        {{ form.password.label_tag }}
+        {{ form.password }}
+        <span id="password-error" style="color: red;"></span>
+      </div>
+      <button type="button" onclick="validateLoginForm()" style="background-color: #007bff; color: #fff; padding: 10px; border: none; cursor: pointer; width: 100%;">Login</button>
+    </form>
+  </div>
+
+  <script>
+    function validateLoginForm() {
+      var username = document.getElementById('id_username').value;
+      var password = document.getElementById('id_password').value;
+      var usernameError = document.getElementById('username-error');
+      var passwordError = document.getElementById('password-error');
+
+      // Reset previous error messages
+      usernameError.textContent = '';
+      passwordError.textContent = '';
+
+      // Basic validation
+      if (!username) {
+        usernameError.textContent = 'Username is required.';
+        return;
+      }
+
+      if (!password) {
+        passwordError.textContent = 'Password is required.';
+        return;
+      }
+
+      // If validation passes, submit the form
+      document.getElementById('login-form').submit();
+    }
+  </script>
+{% endblock %}

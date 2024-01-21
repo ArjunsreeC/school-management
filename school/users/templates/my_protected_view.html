@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="home-content">
+        <h2>My Profile</h2>
+        
+        {% if user.is_authenticated %}
+            {% if user_role == 'admin' %}
+                <p class="welcome-message">Welcome, Admin!</p>
+                <div class="admin-content">
+                    <p>You have access to admin features.</p>
+                </div>
+            {% elif user_role == 'staff' %}
+                <p class="welcome-message">Welcome, Staff Member!</p>
+                <div class="staff-content">
+                    <p>You have access to staff-related information.</p>
+                </div>
+            {% elif user_role == 'student' %}
+                <p class="welcome-message">Welcome, Student!</p>
+                <div class="student-content">
+                    <p>You can view student-specific content.</p>
+                </div>
+            {% else %}
+                <p class="welcome-message">Welcome, User!</p>
+            {% endif %}
+        {% else %}
+            <p class="login-message">Please log in to access this content.</p>
+        {% endif %}
+    </div>
+{% endblock %}
+
+<style>
+    .home-content {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        color: #333;
+    }
+
+    .welcome-message {
+        color: #007bff;
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .login-message {
+        color: #dc3545;
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .admin-content,
+    .staff-content,
+    .student-content {
+        margin-top: 20px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+
+    .admin-content {
+        background-color: #f8d7da; /* Light red background for admin content */
+    }
+
+    .staff-content {
+        background-color: #d4edda; /* Light green background for staff content */
+    }
+
+    .student-content {
+        background-color: #cce5ff; /* Light blue background for student content */
+    }
+</style>
